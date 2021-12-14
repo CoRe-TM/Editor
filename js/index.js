@@ -4,13 +4,13 @@ iframe.classList.add('embedEditor')
 
 const clientId = Math.random()*10e15
 
-var draft = localStorage.getItem('.draft-' + name);
 const elt = document.querySelector('.diagram')
-
+var draft = localStorage.getItem('diagram');
 
 window.addEventListener('message', handleIncomingEvents)
 
-window.addEventListener("storage", (e) => {
+window.addEventListener('storage', (e) => {
+  console.log('storage!')
   if(e.key !== 'diagram') {
     return
   }
@@ -19,10 +19,10 @@ window.addEventListener("storage", (e) => {
   if(record.clientId === clientId) {
     return
   }
-  var { diagram } = record
+  var { xml } = record
   iframe.contentWindow.postMessage(JSON.stringify({
     "action": "merge",
-    "xml": diagram 
+    "xml": xml 
   }), '*')
 })
 
@@ -38,8 +38,9 @@ function handleIncomingEvents (message) {
     }
     else if (msg.event == 'init') {
       if (draft != null) {
+        var rec = JSON.parse(draft)
         iframe.contentWindow.postMessage(JSON.stringify({action: 'load',
-          autosave: 1, xml: draft.xml}), '*');
+          autosave: 1, xml: rec.xml}), '*');
         iframe.contentWindow.postMessage(JSON.stringify({action: 'status',
           modified: true}), '*');
       } else {
@@ -52,16 +53,16 @@ function handleIncomingEvents (message) {
       // Extracts SVG DOM from data URI to enable links
       var svg = atob(msg.data.substring(msg.data.indexOf(',') + 1));
       elt.innerHTML = svg;
-      localStorage.setItem(name, JSON.stringify({lastModified: new Date(), data: svg}));
-      localStorage.removeItem('.draft-' + name);
+      localStorage.setItem('diagram', JSON.stringify({lastModified: new Date(), data: svg}));
       draft = null;
       close();
     } else if (msg.event == 'autosave') {
-      localStorage.setItem('.draft-' + name, JSON.stringify({lastModified: new Date(), xml: msg.xml}));
+      console.log('Autosave', msg.xml)
+      localStorage.setItem('diagram', JSON.stringify({lastModified: new Date(), savedBy: clientId, xml: msg.xml}));
     } else if (msg.event == 'save') {
       iframe.contentWindow.postMessage(JSON.stringify({action: 'export',
         format: 'xmlsvg', xml: msg.xml, spin: 'Updating page'}), '*');
-      localStorage.setItem('.draft-' + name, JSON.stringify({lastModified: new Date(), xml: msg.xml}));
+      localStorage.setItem('diagram' + name, JSON.stringify({lastModified: new Date(), xml: msg.xml}));
     } else if (msg.event == 'exit') {
       localStorage.removeItem('.draft-' + name);
       draft = null;
