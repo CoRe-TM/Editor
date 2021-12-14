@@ -1,6 +1,8 @@
 var embed = document.createElement('iframe')
-embed.src = 'https://embed.diagrams.net/?proto=json&spin=1'
+embed.src = 'http://localhost:8000/?proto=json&spin=1&embed=1'
 embed.classList.add('embedEditor')
+
+const clientId = Math.random()*10e15
 
 
 /*embed.onload = function () {
@@ -14,16 +16,36 @@ embed.classList.add('embedEditor')
     }
     if(message.event == 'init') {
       console.log('init: rdy to be loaded')
-      var xml = randomHTML()
-      console.log(xml)
+
+      try {
+        var diagram = JSON.parse(localStorage.getItem('diagram')).diagram 
+      } catch (e) {
+        var diagrm = randomXMLPNG()
+      }
       embed.contentWindow.postMessage(JSON.stringify({
-  "action": "load",
-  "autosave": 1,
-  "saveAndExit": "1",
-  "modified": "unsavedChanges",
-  "xml": localStorage.getItem('diagram') || randomXMLPNG()
-}), '*')
+        "action": "load",
+        "autosave": 1,
+        "modified": "unsavedChanges",
+        "xml": diagram 
+      }), '*')
     }
+  })
+
+  window.addEventListener("storage", (e) => {
+    if(e.key !== 'diagram') {
+      return
+    }
+
+    var record = JSON.parse(e.newValue)
+    if(record.clientId === clientId) {
+      return
+    }
+    var { diagram } = record
+    embed.contentWindow.postMessage(JSON.stringify({
+      "action": "merge",
+      "xml": diagram 
+    }), '*')
+    
   })
 
 //}
@@ -50,5 +72,9 @@ function autosave (message) {
   var xmlDoc = parser.parseFromString(JSON.parse(message.data).xml,"text/xml");
 
   var xmlDiagram = xmlDoc.getElementsByTagName('diagram')[0].textContent
-  localStorage.setItem('diagram', xmlDiagram)
+  var record = {
+    clientId: clientId,
+    diagram: xmlDiagram
+  }
+  localStorage.setItem('diagram', JSON.stringify(record))
 }
