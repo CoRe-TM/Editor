@@ -3,9 +3,8 @@ import DrawioStateController from './DrawioController.js'
 import LocalStorageModel from './LocalStorageModel.js'
 
 var iframe = document.createElement('iframe')
-iframe.src = 'https://embed.diagrams.net/?embed=1&ui=min&spin=1&proto=json&configure=1'
+iframe.src = 'https://embed.diagrams.net/?embed=1&ui=min&theme=dark&spin=1&proto=json&configure=1'
 iframe.classList.add('embedEditor')
-
 
 const diagramTemplate = document.querySelector('.diagram')
 

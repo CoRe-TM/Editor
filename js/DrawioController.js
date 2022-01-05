@@ -38,37 +38,47 @@ export default class DrawioStateController {
     var configurationAction = {
       action: 'configure',
       config: {
-        ui: 'min',
-        defaultLibraries: 'general;company-graph;Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fmichenriksen%2Fdrawio-threatmodeling%2Fmaster%2Fdfd.xml;dfd;threatModeling',
-        enabledLibraries: ['general', 'company-graph', 'dfd', 'dfd.xml', 'Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fmichenriksen%2Fdrawio-threatmodeling%2Fmaster%2Fdfd.xml', 'threatModeling'],
+        defaultLibraries: 'coretm',
+        defaultCustomLibraries: [ 'coretm'],
+        enabledLibraries: [ 'coretm'],
           libraries: [ {
            "title": {
-           "main": "Company"
+           "main": "coretm"
            },
            "entries": [ {
-          "id": "company-graph",
+          "id": "coretm",
           "title": {
-            "main": "Graphics",
-            "de": "Grafiken"
+            "main": "Threat Modeling",
+            "de": "Bedrohungsmodellierung"
           },
           "desc": {
-            "main": "Collection of Graphics for Company",
-            "de": "Sammlung von Grafiken für Firma"
+            "main": "CoReTM Threat Modelling Assets",
+            "de": "CoReTM Threat Modelling Assets"
           },
-          "libs": [ {
+          "libs": [{
            "title": {
-             "main": "GG",
-             "de": "GG"
+             "main": "STRIDE",
+             "de": "STRIDE"
            },
-           "data": [ {
-               "xml": "jZLBbsMgDIafhmuUgKr1mqZbL5u0VyCJF5BMHIHbpG9fEti6Tqq0A5L5/NuYH4Rq3HLyejIf1AMK9SpU44k4RW5pAFHI0vZCHYWUZVxCvj3JVlu2nLSHkf9TIFPBReMZEkkg8BUz6HUwsMpLoQ50ZrQjNDSO0HGGhl0c/FjFUKMdxhh38XzwEaBuAT8pWLb0kLiAZ9tpfP8jaImZ3C9BnVsyTZEGo6d1MLcMq2nFDC3SQKHovZ4tySj5sogNIfltflXVu0Ot8j1jT1ieerWhbNQJyAH7a5TMtmeTFDtZZIcM2MHkupey2CeqQyLDT/Xd/Bhk/7+393fecg/f4AY=",
-               "w": 52.2,
-               "h": 70.8,
-               "aspect": "fixed"
-             } ]
-            } ]
-           } ]
-          } ],
+           "data": strideTMLib
+            },
+           {
+           "title": {
+             "main": "PASTA",
+             "de": "PASTA"
+           },
+           "data": ""
+            },
+           {
+           "title": {
+             "main": "Attack Trees",
+             "de": "Angriffsbäume"
+           },
+           "data": ""
+            }
+          ]
+          }]
+        }],
         css: `.geMenubarContainer {
               }
               .geMenubar {
