@@ -1,5 +1,6 @@
 import strideTMLib from './drawiolibs/stride-coretm-lib.js'
 import strideTemplate from './drawiolibs/stride-coretm-template.js'
+import cssVariables from '../styles/variables.js'
 
 export default class DrawioStateController {
   constructor (drawio, storage, diagramTemplate) {
@@ -79,14 +80,25 @@ export default class DrawioStateController {
           ]
           }]
         }],
-        css: `.geMenubarContainer {
-              }
-              .geMenubar {
-                /*background-color: #F08705 !important;*/
-              }
-              .geDiagramContainer {
-                overflow: hidden !important;
-              }
+        css: `
+          .geMenubarContainer, .mxWindow {
+            background-color: ${cssVariables['--coretm-lightgreen']} !important;
+          }
+          .geTitle, .mxWindowTitle, .geFormatSection {
+            color: ${cssVariables['--coretm-darkgrey']} !important;
+          }
+          .geFormatSection:nth-of-type(3), .geFormatSection:nth-of-type(4) {
+          display: none;
+
+          }
+          .geMenubar {
+          }
+          .geDiagramContainer {
+            overflow: hidden !important;
+          }
+          .geToolbarButton[title=Language] {
+            display: none;
+          }
         `,
         defaultFonts: [
           "Humor Sans",
