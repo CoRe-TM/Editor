@@ -1,6 +1,6 @@
-import strideTMLib from './drawiolibs/stride-coretm-lib.js'
-import strideTemplate from './drawiolibs/stride-coretm-template.js'
-import cssVariables from '../styles/variables.js'
+import strideTMLib from '../drawiolibs/stride-coretm-lib.js'
+import strideTemplate from '../drawiolibs/stride-coretm-template.js'
+import cssVariables from '../../styles/variables.js'
 
 export default class DrawioStateController {
   constructor (drawio, storage, diagramTemplate) {
