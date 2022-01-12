@@ -112,9 +112,10 @@ export default class DrawioStateController {
 
   loadDrawio () {
     var draft = this.storage.read()
+    var loadAction
     if (draft != null) {
       var rec = draft
-      var loadAction = {
+      loadAction = {
         action: 'load',
         autosave: 1,
         xml: rec.xml
@@ -128,7 +129,7 @@ export default class DrawioStateController {
       this.drawio.send(loadAction)
       this.drawio.send(statusAction)
     } else {
-      var loadAction = {
+      loadAction = {
         action: 'load',
         autosave: 1,
         xml: strideTemplate

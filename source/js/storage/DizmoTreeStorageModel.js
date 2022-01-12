@@ -11,7 +11,7 @@ export default class DizmoTreeStorageModel {
   }
 
   read (key=this.storageKey) {
-    var item = this.repo.getProperty(this.storageKey)
+    var item = this.repo.getProperty(key)
     //return JSON.parse(item)
     return item
   }

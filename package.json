@@ -1,0 +1,96 @@
+{
+  "name": ".",
+  "description": "coretm",
+  "version": "0.0.0",
+  "author": {
+    "name": "Jan von der Assen",
+    "email": "vonderassen@ifi.uzh.ch"
+  },
+  "contributors": [
+    {
+      "name": "Jan von der Assen",
+      "email": "vonderassen@ifi.uzh.ch"
+    }
+  ],
+  "dizmo": {
+    "settings": {
+      "attributes": {
+        "settings/usercontrols/allowresize": true
+      },
+      "bundle-identifier": "com.vonderassen.coretm",
+      "bundle-name": ".",
+      "category": "",
+      "height": 360,
+      "tags": [
+        ""
+      ],
+      "width": 480
+    },
+    "store": {
+      "host": "https://store-api.dizmo.com"
+    }
+  },
+  "dependencies": {
+    "@dizmo/dizmo.js": "^1.4.73",
+    "core-js": "^3.17.3",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "ansi-colors": "^4.1.1",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "eslint": "^7.32.0",
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.2",
+    "gulp-copy": "^4.0.1",
+    "gulp-dart-sass": "^1.0.2",
+    "gulp-eslint": "^6.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-plist": "^0.9.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.1.3",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-zip": "^5.1.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.41.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.52.1",
+    "webpack-stream": "^7.0.0",
+    "yargs": "^17.1.1"
+  },
+  "license": "ISC",
+  "optionalDependencies": {
+    "chai": "^4.3.4",
+    "chai-spies": "^1.0.0",
+    "ignore-styles": "^5.0.1",
+    "javascript-obfuscator": "^2.19.0",
+    "jsdoc": "^3.6.7",
+    "jsdom": "^17.0.0",
+    "jsdom-global": "^3.0.2",
+    "minami": "^1.2.3",
+    "mocha": "^9.1.1",
+    "pump": "^3.0.0",
+    "request": "^2.88.2",
+    "webpack-cli": "^4.8.0",
+    "webpack-obfuscator": "^3.4.1"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "node ./gulp/tools/run-task.js",
+    "clean": "node ./gulp/tools/run-task.js clean",
+    "deploy": "node ./gulp/tools/run-task.js deploy",
+    "docs": "node ./gulp/tools/run-task.js docs",
+    "lint": "node ./gulp/tools/run-task.js lint",
+    "prebuild": "node ./gulp/tools/run-task.js prebuild",
+    "test": "node ./gulp/tools/run-task.js test",
+    "upload": "node ./gulp/tools/run-task.js upload",
+    "watch": "node ./gulp/tools/run-task.js watch"
+  }
+}
