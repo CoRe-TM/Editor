@@ -15,16 +15,17 @@
   "dizmo": {
     "settings": {
       "attributes": {
-        "settings/usercontrols/allowresize": true
+        "settings/usercontrols/allowresize": true,
+        "settings/framecolor": "#C6D3BE"
       },
       "bundle-identifier": "com.vonderassen.coretm",
       "bundle-name": ".",
       "category": "",
-      "height": 360,
+      "height": 900,
       "tags": [
         ""
       ],
-      "width": 480
+      "width": 1600
     },
     "store": {
       "host": "https://store-api.dizmo.com"

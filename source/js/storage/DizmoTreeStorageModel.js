@@ -4,9 +4,8 @@ export default class DizmoTreeStorageModel {
     this.repo = dizmo.publicStorage
   }
   observe (callback) {
-    this.repo.subscribeToProperty(this.storageKey, (_, e) => {
-      var record = JSON.parse(e.newValue)
-      callback(record)
+    this.repo.subscribeToProperty(this.storageKey, (_, newval) => {
+      callback(newval)
     })
   }
 
