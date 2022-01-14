@@ -3,10 +3,9 @@ import strideTemplate from '../drawiolibs/stride-coretm-template.js'
 import cssVariables from '../../styles/variables.js'
 
 export default class DrawioStateController {
-  constructor (drawio, storage, diagramTemplate) {
+  constructor (drawio, storage) {
     this.drawio = drawio
     this.storage = storage
-    this.diagramTemplate = diagramTemplate
     this.clientId = Math.random() * 10e15
 
     this.storage.observe(this.mergeChanges.bind(this))
