@@ -1,6 +1,7 @@
 import strideTMLib from '../drawiolibs/stride-coretm-lib.js'
 import strideTemplate from '../drawiolibs/stride-coretm-template.js'
 import cssVariables from '../../styles/variables.js'
+import { encodeModel, decodeModel } from '../storage/exportDecodedModel.js'
 
 export default class DrawioStateController {
   constructor (drawio, storage) {
@@ -8,7 +9,10 @@ export default class DrawioStateController {
     this.storage = storage
     this.clientId = Math.random() * 10e15
 
+    // Merge and render model if it changes
     this.storage.observe(this.mergeChanges.bind(this))
+    // Encode changes to readable model and save so that it gets loaded
+    this.storage.observe(this.encodeModelChanges.bind(this), 'diagramdecoded')
     this.drawio.receive(this.handleIncomingEvents.bind(this))
   }
 
@@ -155,12 +159,34 @@ export default class DrawioStateController {
       lastModified: new Date(),
       data: svg
     })
+    this.storage.write({
+      data: decodeModel(svg)
+    }, 'diagramdecoded')
   }
   autoSaveDiagram (msg) {
     this.storage.write({
       lastModified: new Date(),
       savedBy: this.clientId,
       xml: msg.xml
+    })
+    this.storage.write({
+      data: decodeModel(msg.xml)
+    }, 'diagramdecoded')
+  }
+
+  encodeModelChanges (data) {
+    var encodedModel = encodeModel(data)
+    var parser = new DOMParser()
+    var { xml } = this.storage.read()
+    var xmlDoc = parser.parseFromString(xml, 'text/xml')
+    xmlDoc.querySelector('diagram').textContent = encodedModel
+    var serializer = new XMLSerializer()
+    var serialized = serializer.serializeToString(xmlDoc)
+
+    this.storage.write({
+      lastModified: new Date(),
+      savedBy: this.clientId,
+      xml: serialized
     })
   }
   close () {

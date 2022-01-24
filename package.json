@@ -34,6 +34,7 @@
   "dependencies": {
     "@dizmo/dizmo.js": "^1.4.73",
     "core-js": "^3.17.3",
+    "pako": "^2.0.4",
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
