@@ -5,6 +5,11 @@ html, body {
   width: 100vw;
 }
 
+#front, #back {
+  height: 100%;
+  width: 100%;
+}
+
 .diagram {
   display: none;
 }
@@ -14,3 +19,8 @@ html, body {
   width: 100%;
   border: none;
 } 
+
+.no-dizmo-drag {
+  -webkit-dashboard-region: dashboard-region(control rectangle);
+  --dizmo-no-drag: true;
+}

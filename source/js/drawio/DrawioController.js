@@ -84,7 +84,7 @@ export default class DrawioStateController {
           }]
         }],
         css: `
-          .geMenubarContainer, .mxWindow {
+          /*.geMenubarContainer, .mxWindow {
             background-color: ${cssVariables['--coretm-lightgreen']} !important;
           }
           .geTitle, .mxWindowTitle, .geFormatSection {
@@ -96,8 +96,9 @@ export default class DrawioStateController {
           }
           .geMenubar {
           }
+          */
           .geDiagramContainer {
-            overflow: hidden !important;
+           // overflow: hidden !important;
           }
           .geToolbarButton[title=Language] {
             display: none;
