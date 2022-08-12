@@ -1,4 +1,5 @@
 import strideTMLib from '../drawiolibs/stride-coretm-lib.js'
+import uwbTMLib from '../drawiolibs/uwb-coretm-lib.js'
 import strideTemplate from '../drawiolibs/stride-coretm-template.js'
 import cssVariables from '../../styles/variables.js'
 import { encodeModel, decodeModel } from '../storage/exportDecodedModel.js'
@@ -79,6 +80,13 @@ export default class DrawioStateController {
              "de": "Angriffsbäume"
            },
            "data": ""
+            },
+           {
+           "title": {
+             "main": "UWB Privacy",
+             "de": "UWB"
+           },
+           "data": uwbTMLib
             }
           ]
           }]
